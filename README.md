@@ -13,7 +13,7 @@ injection are:
 - Increased cohesion of the parts of an application.
 - Increased testability.
 - Better design of applications when using dependency injection.
-- Increased reusability.
+- Increased re-usability.
 - Increased maintainability.
 - Standardizes parts of application development.
 - Reduces boilerplate code.
