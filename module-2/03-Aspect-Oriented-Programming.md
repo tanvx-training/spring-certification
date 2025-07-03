@@ -114,7 +114,7 @@ public class LoggingAspect {
 
 ## Proxy
 
-![alt text](images/core_spring_in_detail/Screenshot_2.png "Screenshot_2")
+![alt text](../images/core_spring_in_detail/Screenshot_2.png "Screenshot_2")
 
 - Các lớp Proxy được tạo ra trong giai đoạn khởi tạo bởi các BeanPostProcessors chuyên dụng.
 - Hai loại Proxy:
@@ -137,7 +137,7 @@ public class LoggingAspect {
         - Dựa trên proxy kế thừa lớp cơ sở.
         - Spring AOP có thể sử dụng CGLIB proxy dù đối tượng target có thực thi interface hay không.
 
-![alt text](images/handout/Screenshot_18.png "Screenshot_18")
+![alt text](../images/handout/Screenshot_18.png "Screenshot_18")
 
 - Loại proxy mặc định được sử dụng bởi Spring framework là `JDK dynamic proxy`.
 - Hạn chế của Proxy:
@@ -167,7 +167,7 @@ public class AppConfig {
 }
 ```
 
-![alt text](images/handout/Screenshot_5.png "Screenshot_5")
+![alt text](../images/handout/Screenshot_5.png "Screenshot_5")
 
 - Khi sử dụng proxy, giả sử phương thức a() gọi phương thức b() trên cùng một lớp/interface, advice sẽ không bao giờ được thực thi cho phương thức b().
 
@@ -196,7 +196,7 @@ public class AppConfig {
 }
 ```  
 
-![alt text](images/handout/Screenshot_29.png "Screenshot_29")
+![alt text](../images/handout/Screenshot_29.png "Screenshot_29")
 
 - `@EnableAspectJAutoProxy`: để kích hoạt hỗ trợ aspect, lớp cấu hình phải được chú thích, mặc định **JDK dynamic proxy**.
 - `@EnableAspectJAutoProxy(proxyTargetClass = true)`: nếu thư viện **CGLIB** được thêm vào classpath của ứng dụng, Spring phải được thông báo rằng chúng ta muốn proxy dựa trên lớp con bằng cách sửa đổi chú thích kích hoạt aspect.
@@ -205,9 +205,9 @@ public class AppConfig {
 
 - Rõ ràng là advice trước đã được thực thi, nhưng nó thực sự hoạt động như thế nào? Spring IoC tạo bean userTemplateRepo. Sau đó, định nghĩa aspect với một advice phải được thực thi trước phương thức findById thông báo với Spring rằng bean này phải được bao bọc trong một đối tượng proxy sẽ thêm hành vi bổ sung, và đối tượng này sẽ được tiêm thay thế cho đối tượng gốc mọi nơi cần thiết. Và vì chúng ta đang sử dụng JDK dynamic proxies, proxy sẽ thực thi interface `UserRepo`.
 
-![alt text](images/pet-sitter/Screenshot_6.png "Screenshot_6")
+![alt text](../images/pet-sitter/Screenshot_6.png "Screenshot_6")
 
-![alt text](images/pet-sitter/Screenshot_7.png "Screenshot_7")
+![alt text](../images/pet-sitter/Screenshot_7.png "Screenshot_7")
 
 - Để sử dụng các aspect trong một ứng dụng Spring, bạn cần những điều sau:
     - `spring-aop` là một phụ thuộc.
@@ -216,7 +216,7 @@ public class AppConfig {
     - Kích hoạt hỗ trợ aspect bằng cách chú thích lớp cấu hình với `@EnableAspectJAutoProxy`.
     - (Tùy chọn) Thêm CGLIB làm phụ thuộc và kích hoạt hỗ trợ aspect sử dụng proxy dựa trên lớp con bằng cách chú thích lớp cấu hình với `@EnableAspectJAutoProxy(proxyTargetClass = true)`.
 
-![alt text](images/handout/Screenshot_30.png "Screenshot_30")
+![alt text](../images/handout/Screenshot_30.png "Screenshot_30")
 
 ## Định Nghĩa Pointcuts
 
@@ -373,7 +373,7 @@ bean(mySuperService)
 
 **Aspect** = **PointCut**(Nơi Aspect được áp dụng) + **Advice**(Mã được thực thi)
 
-![alt text](images/aop/Screenshot.png "Screenshot")
+![alt text](../images/aop/Screenshot.png "Screenshot")
 
 #### Trước
 
@@ -387,7 +387,7 @@ bean(mySuperService)
 - Before advice luôn tiếp tục đến join point trừ khi một ngoại lệ được ném từ trong mã advice.
 - Việc sử dụng tham số `JoinPoint` trong advice là tùy chọn.
 
-![alt text](images/aop/Screenshot_1.png "Screenshot_1")
+![alt text](../images/aop/Screenshot_1.png "Screenshot_1")
 
 ```java
 @Before("com.ps.aspects.PointcutContainer.serviceUpdate(id, pass)")
@@ -396,7 +396,7 @@ public void beforeServiceUpdate (Long id, String pass) throws Throwable {
 }
 ```
 
-![alt text](images/pet-sitter/Screenshot_8.png "Screenshot_8")
+![alt text](../images/pet-sitter/Screenshot_8.png "Screenshot_8")
 
 1. Đối tượng proxy nhận yêu cầu gọi đến bean đích và gọi trước phương thức advice.
 2. Nếu phương thức advice thực thi thành công, yêu cầu ban đầu sẽ được chuyển tiếp đến bean đích và kết quả trả về cho caller.
@@ -411,7 +411,7 @@ public void beforeServiceUpdate (Long id, String pass) throws Throwable {
         - Xác thực dữ liệu <br/>
           Kiểm tra dữ liệu được sinh ra từ phương thức được advice.
 
-![alt text](images/aop/Screenshot_4.png "Screenshot_4")
+![alt text](../images/aop/Screenshot_4.png "Screenshot_4")
 
 ```java
 @AfterReturning(value="execution (* com.ps.services.*Service+.update*(..))", returning = "result")
@@ -420,7 +420,7 @@ public void afterServiceUpdate(JoinPoint joinPoint, int result) throws Throwable
 }
 ```
 
-![alt text](images/pet-sitter/Screenshot_9.png "Screenshot_9")
+![alt text](../images/pet-sitter/Screenshot_9.png "Screenshot_9")
 
 #### Sau khi ném ra ngoại lệ
 
@@ -429,7 +429,7 @@ public void afterServiceUpdate(JoinPoint joinPoint, int result) throws Throwable
         - Xử lý lỗi
         - Thống kê
 
-![alt text](images/aop/Screenshot_3.png "Screenshot_3")
+![alt text](../images/aop/Screenshot_3.png "Screenshot_3")
 
 ```java
 @AfterThrowing(value="execution(* com.ps.services.*Service+.updateUsername(..))", throwing = "e")
@@ -438,7 +438,7 @@ public void afterBadUpdate(JoinPoint joinPoint, Exception e) throws Throwable {
 }
 ```
 
-![alt text](images/pet-sitter/Screenshot_10.png "Screenshot_10")
+![alt text](../images/pet-sitter/Screenshot_10.png "Screenshot_10")
 
 #### Sau
 
@@ -447,7 +447,7 @@ public void afterBadUpdate(JoinPoint joinPoint, Exception e) throws Throwable {
         - Giải phóng tài nguyên. <br/>
           Tương tự như trong khối finally trong try-finally, after (finally) advice luôn được thực thi sau khi join point kết thúc và do đó có thể đảm bảo rằng tài nguyên luôn được giải phóng.
 
-![alt text](images/aop/Screenshot_2.png "Screenshot_2")
+![alt text](../images/aop/Screenshot_2.png "Screenshot_2")
 
 ```java
 @After("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.updateUsername(..))")
@@ -456,7 +456,7 @@ public void afterFindById(JoinPoint joinPoint) throws Throwable {
 }
 ```
 
-![alt text](images/pet-sitter/Screenshot_11.png "Screenshot_11")
+![alt text](../images/pet-sitter/Screenshot_11.png "Screenshot_11")
 
 #### Around
 
@@ -468,9 +468,9 @@ public void afterFindById(JoinPoint joinPoint) throws Throwable {
 - Around advice là loại advice mạnh mẽ nhất, vì nó bao bọc phương thức đích và có quyền kiểm soát việc thực thi của nó, có nghĩa là advice quyết định liệu phương thức đích có được gọi hay không, và nếu có, thì khi nào.
 - Loại `ProceedingJoinPoint` kế thừa từ `JoinPoint` và thêm phương thức `proceed()` được sử dụng để gọi phương thức đích.
 
-![alt text](images/aop/Screenshot_5.png "Screenshot_5")
+![alt text](../images/aop/Screenshot_5.png "Screenshot_5")
 
-![alt text](images/aop/Screenshot_6.png "Screenshot_6")
+![alt text](../images/aop/Screenshot_6.png "Screenshot_6")
 
 ```java
 @Around("execution(public * com.ps.repos.*.*Repo+.find*(..))")
@@ -527,47 +527,47 @@ Xin lỗi về sự thiếu sót đó. Dưới đây là bản dịch đầy đ�
 
 ## PointCuts
 
-![alt text](images/aop/Screenshot_12.png "Screenshot_12")
+![alt text](../images/aop/Screenshot_12.png "Screenshot_12")
 
 #### Wildcards
 
-![alt text](images/aop/Screenshot_7.png "Screenshot_7")
+![alt text](../images/aop/Screenshot_7.png "Screenshot_7")
 
 #### Parameter Wildcards
 
-![alt text](images/aop/Screenshot_8.png "Screenshot_8")
+![alt text](../images/aop/Screenshot_8.png "Screenshot_8")
 
 #### Packages and Classes
 
-![alt text](images/aop/Screenshot_9.png "Screenshot_9")
+![alt text](../images/aop/Screenshot_9.png "Screenshot_9")
 
-![alt text](images/aop/Screenshot_10.png "Screenshot_10")
+![alt text](../images/aop/Screenshot_10.png "Screenshot_10")
 
-![alt text](images/aop/Screenshot_11.png "Screenshot_11")
+![alt text](../images/aop/Screenshot_11.png "Screenshot_11")
 
-![alt text](images/aop/Screenshot_18.png "Screenshot_18")
+![alt text](../images/aop/Screenshot_18.png "Screenshot_18")
 
-![alt text](images/handout/Screenshot_31.png "Screenshot_31")
+![alt text](../images/handout/Screenshot_31.png "Screenshot_31")
 
 #### Annotation
 
-![alt text](images/aop/Screenshot_13.png "Screenshot_13")
+![alt text](../images/aop/Screenshot_13.png "Screenshot_13")
 
-![alt text](images/aop/Screenshot_17.png "Screenshot_17")
+![alt text](../images/aop/Screenshot_17.png "Screenshot_17")
 
-![alt text](images/handout/Screenshot_32.png "Screenshot_32")
+![alt text](../images/handout/Screenshot_32.png "Screenshot_32")
 
 #### Spring beans names as PointCut
 
-![alt text](images/aop/Screenshot_14.png "Screenshot_14")
+![alt text](../images/aop/Screenshot_14.png "Screenshot_14")
 
 #### Boolean expressions in PointCut
 
-![alt text](images/aop/Screenshot_15.png "Screenshot_15")
+![alt text](../images/aop/Screenshot_15.png "Screenshot_15")
 
 ## @PointCut
 
-![alt text](images/aop/Screenshot_16.png "Screenshot_16")
+![alt text](../images/aop/Screenshot_16.png "Screenshot_16")
 
 #### PointCuts XML
 
@@ -608,6 +608,6 @@ public interface Server {
 }
 ```
 
-![alt text](images/handout/Screenshot_33.png "Screenshot_33")
+![alt text](../images/handout/Screenshot_33.png "Screenshot_33")
 
-![alt text](images/handout/Screenshot_34.png "Screenshot_34")
+![alt text](../images/handout/Screenshot_34.png "Screenshot_34")

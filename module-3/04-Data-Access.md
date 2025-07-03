@@ -9,7 +9,7 @@
     - Việc sử dụng nó giúp chuyển đổi các ngoại lệ được kiểm tra đặc thù của nhà cung cấp thành các ngoại lệ thời gian chạy.
     - Nó cho phép chuyển đổi dễ dàng giữa các công nghệ lưu trữ và giúp lập trình viên không phải lo lắng về việc bắt các ngoại lệ đặc thù của từng công nghệ.
 
-![alt text](images/handout/Screenshot_35.png "Screenshot_35")
+![alt text](../images/handout/Screenshot_35.png "Screenshot_35")
 
 - Giao diện `javax.sql.DataSource` là giao diện từ đó tất cả các lớp nguồn dữ liệu liên quan đến SQL phát sinh.
     - DelegatingDataSource
@@ -188,7 +188,7 @@ public class AppConfig {
     - Google's `Guava` và `Caffeine`
     - Pivotal's `Gemfire`
 
-![alt text](images/handout/Screenshot_38.png "Screenshot_38")
+![alt text](../images/handout/Screenshot_38.png "Screenshot_38")
 
 ```java
 @Service
@@ -213,9 +213,9 @@ public class CitiesService {
 }
 ```
 
-![alt text](images/handout/Screenshot_36.png "Screenshot_36")
+![alt text](../images/handout/Screenshot_36.png "Screenshot_36")
 
-![alt text](images/handout/Screenshot_37.png "Screenshot_37")
+![alt text](../images/handout/Screenshot_37.png "Screenshot_37")
 
 ### ACID
 
@@ -237,7 +237,7 @@ public class CitiesService {
 - Chú thích này phải chỉ được sử dụng trên các phương thức public; nếu không, proxy giao dịch sẽ không thể áp dụng hành vi giao dịch.
 - Chú thích tiêu chuẩn `javax.transaction.Transactional` cũng được hỗ trợ như một sự thay thế dễ dàng cho chú thích của Spring.
 
-![alt text](images/pet-sitter/Screenshot_13.png "Screenshot_13")
+![alt text](../images/pet-sitter/Screenshot_13.png "Screenshot_13")
 
 #### Sự khác biệt giữa giao dịch cục bộ và giao dịch toàn cầu
 
@@ -323,7 +323,7 @@ public User findById(Long id) {
 - `noRollbackFor` - Các lớp ngoại lệ không gây hoàn tác giao dịch.
 - `noRollbackForClassName` - Tên các lớp ngoại lệ không bao giờ gây ra hoàn tác giao dịch.
 
-![alt text](images/handout/Screenshot_50.png "Screenshot_50")
+![alt text](../images/handout/Screenshot_50.png "Screenshot_50")
 
 - Spring cho phép sử dụng chú thích `javax.transaction.Transactional` của JPA thay thế cho chú thích `@Transactional` của Spring, mặc dù nó không có nhiều tùy chọn cấu hình.
 - Nếu một phương thức `@Transactional` gọi phương thức `@Transactional` khác, phương thức đó sẽ thực thi trong cùng một ngữ cảnh giao dịch của phương thức đầu tiên.
@@ -346,9 +346,9 @@ public User findById(Long id) {
 - Theo mặc định, giao dịch sẽ được hoàn tác nếu một `RuntimeException` được ném ra.
 - `@Transactional("myOtherTransactionManager")` - Chạy giao dịch với các quản lý giao dịch cụ thể.
 
-![alt text](images/handout/Screenshot_47.png "Screenshot_47")
+![alt text](../images/handout/Screenshot_47.png "Screenshot_47")
 
-![alt text](images/handout/Screenshot_48.png "Screenshot_48")
+![alt text](../images/handout/Screenshot_48.png "Screenshot_48")
 
 
 ### PlatformTransactionManager
@@ -384,7 +384,7 @@ txManager.commit(status);
 
 - **Ví dụ 1**
 
-![alt text](images/handout/Screenshot_52.png "Screenshot_52")
+![alt text](../images/handout/Screenshot_52.png "Screenshot_52")
 
 - **Ví dụ 2**
 
@@ -467,7 +467,7 @@ public class ProgramaticUserService implements UserService {
 
 ### org.springframework.transaction.annotation.Isolation
 
-![alt text](images/handout/Screenshot_49.png "Screenshot_49")
+![alt text](../images/handout/Screenshot_49.png "Screenshot_49")
 
 - **DEFAULT**: mức độ cách ly mặc định của hệ quản trị cơ sở dữ liệu (DBMS).
 - **READ_UNCOMMITTED**: dữ liệu thay đổi bởi một giao dịch có thể được đọc bởi một giao dịch khác trong khi giao dịch đầu tiên chưa cam kết, còn được gọi là **dirty reads**.
@@ -500,7 +500,7 @@ public class ProgramaticUserService implements UserService {
 - Ngăn ngừa **phantom reads**.
     - Mức độ cách ly serializable sẽ khóa toàn bộ phạm vi, cả việc đọc và ghi bởi các giao dịch khác – một loại khóa phạm vi.
 
-![alt text](images/Screenshot_2.png "Screenshot_2")
+![alt text](../images/Screenshot_2.png "Screenshot_2")
 
 ## Kiểm Thử Các Phương Thức Giao Dịch
 
@@ -541,17 +541,17 @@ public void testCount() {
 
 ### @Sql
 
-![alt text](images/handout/Screenshot_26.png "Screenshot_26")
+![alt text](../images/handout/Screenshot_26.png "Screenshot_26")
 
 ### @Commit
 
 - Framework `TestContext` có thể được chỉ định để khiến giao dịch cam kết thay vì rollback thông qua chú thích `@Commit`.
 
-![alt text](images/handout/Screenshot_51.png "Screenshot_51")
+![alt text](../images/handout/Screenshot_51.png "Screenshot_51")
 
 ### @BeforeTransaction
 
-![alt text](images/handout/Screenshot_53.png "Screenshot_53")
+![alt text](../images/handout/Screenshot_53.png "Screenshot_53")
 
 ## Spring JDBC
 
@@ -586,7 +586,7 @@ public void testCount() {
 ### `SimpleJdbcCall`
 - Lớp này có thể được sử dụng để gọi các **Stored Procedures** trong Spring.
 
-![alt text](images/handout/Screenshot_39.png "Screenshot_39")
+![alt text](../images/handout/Screenshot_39.png "Screenshot_39")
 
 #### Cấu hình trong spring-context.xml
 
@@ -690,7 +690,7 @@ public interface ResultSetExtractor<T> {
 
 - Truy vấn dữ liệu dưới dạng các map có thể chứa key-value pairs thay vì ánh xạ trực tiếp sang các đối tượng domain.
 
-![alt text](images/handout/Screenshot_42.png "Screenshot_42")
+![alt text](../images/handout/Screenshot_42.png "Screenshot_42")
 
 ## Cơ sở dữ liệu trong bộ nhớ
 
@@ -938,7 +938,7 @@ public class HibernateUserRepo implements UserRepo {
 private EntityManager entityManager;
 ```
 
-![alt text](images/handout/Screenshot_54.png "Screenshot_54")
+![alt text](../images/handout/Screenshot_54.png "Screenshot_54")
 
 - `PlatformTransactionManager`
 
@@ -1017,7 +1017,7 @@ public class JpaUserRepo implements UserRepo {
 private EntityManager entityManager;
 ```
 
-![alt text](images/handout/Screenshot_55.png "Screenshot_55")
+![alt text](../images/handout/Screenshot_55.png "Screenshot_55")
 
 ## Spring + JPA Cấu hình XML
 
@@ -1187,43 +1187,43 @@ find(First[count])By[property expression][comparison operator][ordering operator
 
 ### Hình ảnh minh họa
 
-![alt text](images/db/Screenshot_1.png "Screenshot_1")
+![alt text](../images/db/Screenshot_1.png "Screenshot_1")
 
-![alt text](images/db/Screenshot_2.png "Screenshot_2")
+![alt text](../images/db/Screenshot_2.png "Screenshot_2")
 
-![alt text](images/db/Screenshot_3.png "Screenshot_3")
+![alt text](../images/db/Screenshot_3.png "Screenshot_3")
 
 ## Query DSL
 
-![alt text](images/db/Screenshot_28.png "Screenshot_28")
+![alt text](../images/db/Screenshot_28.png "Screenshot_28")
 
-![alt text](images/db/Screenshot_4.png "Screenshot_4")
+![alt text](../images/db/Screenshot_4.png "Screenshot_4")
 
-![alt text](images/db/Screenshot_5.png "Screenshot_5")
+![alt text](../images/db/Screenshot_5.png "Screenshot_5")
 
-![alt text](images/db/Screenshot_6.png "Screenshot_6")
+![alt text](../images/db/Screenshot_6.png "Screenshot_6")
 
-![alt text](images/db/Screenshot_7.png "Screenshot_7")
+![alt text](../images/db/Screenshot_7.png "Screenshot_7")
 
-![alt text](images/db/Screenshot_8.png "Screenshot_8")
+![alt text](../images/db/Screenshot_8.png "Screenshot_8")
 
-![alt text](images/db/Screenshot_9.png "Screenshot_9")
+![alt text](../images/db/Screenshot_9.png "Screenshot_9")
 
-![alt text](images/db/Screenshot_10.png "Screenshot_10")
+![alt text](../images/db/Screenshot_10.png "Screenshot_10")
 
-![alt text](images/db/Screenshot_11.png "Screenshot_11")
+![alt text](../images/db/Screenshot_11.png "Screenshot_11")
 
-![alt text](images/db/Screenshot_12.png "Screenshot_12")
+![alt text](../images/db/Screenshot_12.png "Screenshot_12")
 
-![alt text](images/db/Screenshot_13.png "Screenshot_13")
+![alt text](../images/db/Screenshot_13.png "Screenshot_13")
 
-![alt text](images/db/Screenshot_14.png "Screenshot_14")
+![alt text](../images/db/Screenshot_14.png "Screenshot_14")
 
-![alt text](images/db/Screenshot_15.png "Screenshot_15")
+![alt text](../images/db/Screenshot_15.png "Screenshot_15")
 
-![alt text](images/db/Screenshot_16.png "Screenshot_16")
+![alt text](../images/db/Screenshot_16.png "Screenshot_16")
 
-![alt text](images/db/Screenshot_17.png "Screenshot_17")
+![alt text](../images/db/Screenshot_17.png "Screenshot_17")
 
 ### Chú thích `@Query` trong Spring Data
 
@@ -1250,7 +1250,7 @@ find(First[count])By[property expression][comparison operator][ordering operator
 ### Precedence của Truy vấn
 
 - Khi có sự xuất hiện của cả `@Query`, `@NamedQuery` và truy vấn trong `orm.xml`, Spring Data sẽ ưu tiên `@Query` trong repository.
-  ![alt text](images/db/Screenshot_23.png "Screenshot_23")
+  ![alt text](../images/db/Screenshot_23.png "Screenshot_23")
 
 ### Paging và Sorting
 
@@ -1283,17 +1283,17 @@ find(First[count])By[property expression][comparison operator][ordering operator
 ### Custom Repositories
 
 - Bạn có thể tạo các repository tùy chỉnh bằng cách định nghĩa giao diện mở rộng từ `JpaRepository` và thực hiện các truy vấn phức tạp trong đó.
-  ![alt text](images/db/Screenshot_25.png "Screenshot_25")
+  ![alt text](../images/db/Screenshot_25.png "Screenshot_25")
 
 ### Auditing
 
 - Spring Data hỗ trợ auditing, giúp tự động cập nhật các trường như `createdDate`, `modifiedDate`, `createdBy`, và `modifiedBy` khi các đối tượng được lưu trữ hoặc cập nhật.
-  ![alt text](images/db/Screenshot_26.png "Screenshot_26")
+  ![alt text](../images/db/Screenshot_26.png "Screenshot_26")
 
 ### Locking
 
 - Spring Data hỗ trợ cơ chế khóa (locking) khi thực hiện các truy vấn, giúp ngăn chặn các vấn đề đồng bộ hóa khi nhiều transaction cố gắng cập nhật dữ liệu cùng lúc.
-  ![alt text](images/db/Screenshot_27.png "Screenshot_27")
+  ![alt text](../images/db/Screenshot_27.png "Screenshot_27")
 
 ### Cập nhật Dữ liệu với `@Modifying` và `@Query`
 
@@ -1313,27 +1313,27 @@ Các tính năng này giúp Spring Data trở thành một công cụ mạnh m�
 - `@Query` annotation allows to execute native queries by setting the **nativeQuery** flag to true
 - The execution of pagination or dynamic sorting for `native queries` is not supported.
 
-![alt text](images/db/Screenshot_18.png "Screenshot_18")
+![alt text](../images/db/Screenshot_18.png "Screenshot_18")
 
-![alt text](images/db/Screenshot_19.png "Screenshot_19")
+![alt text](../images/db/Screenshot_19.png "Screenshot_19")
 
-![alt text](images/db/Screenshot_20.png "Screenshot_20")
+![alt text](../images/db/Screenshot_20.png "Screenshot_20")
 
 ## Named Query
 
-![alt text](images/db/Screenshot_21.png "Screenshot_21")
+![alt text](../images/db/Screenshot_21.png "Screenshot_21")
 
 ## Native Query
 
-![alt text](images/db/Screenshot_22.png "Screenshot_22")
+![alt text](../images/db/Screenshot_22.png "Screenshot_22")
 
 ## Query Precedence
 
-![alt text](images/db/Screenshot_23.png "Screenshot_23")
+![alt text](../images/db/Screenshot_23.png "Screenshot_23")
 
 ## Paging and Sorting
 
-![alt text](images/db/Screenshot_24.png "Screenshot_24")
+![alt text](../images/db/Screenshot_24.png "Screenshot_24")
 
 ```java
 @Test
@@ -1366,15 +1366,15 @@ public void testQueryByPriceRangeAndWoodTypePaging_SpringData() {
 ```
 ## Custom Repositories
 
-![alt text](images/db/Screenshot_25.png "Screenshot_25")
+![alt text](../images/db/Screenshot_25.png "Screenshot_25")
 
 ## Auditing
 
-![alt text](images/db/Screenshot_26.png "Screenshot_26")
+![alt text](../images/db/Screenshot_26.png "Screenshot_26")
 
 ## Locking
 
-![alt text](images/db/Screenshot_27.png "Screenshot_27")
+![alt text](../images/db/Screenshot_27.png "Screenshot_27")
 
 ## Spring data for updating data
 
