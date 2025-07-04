@@ -1,4 +1,6 @@
-### Giới thiệu về Spring Boot
+-----
+
+## Giới thiệu về Spring Boot
 
 Phần này sẽ giải thích các khái niệm cơ bản, ưu điểm và cách hoạt động của Spring Boot.
 
@@ -270,6 +272,8 @@ public class AppService {
     }
 }
 ```
+
+-----
 
 ## Câu hỏi 11: Cần định nghĩa những thuộc tính nào để cấu hình MySQL bên ngoài?
 
@@ -645,6 +649,8 @@ public class UserService {
 }
 ```
 
+-----
+
 ## Câu hỏi 21: Tệp `spring.factories` dùng để làm gì?
 
 Tệp `spring.factories`, nằm trong đường dẫn `META-INF/spring.factories` trên classpath, được cơ chế Tự động cấu hình (Auto-Configuration) của Spring Boot sử dụng để xác định vị trí của các lớp cấu hình tự động.
@@ -787,20 +793,26 @@ Sau khi thêm dependency này, bạn có thể truy cập các endpoint mặc đ
 
 ## Câu hỏi 25: Hai giao thức bạn có thể sử dụng để truy cập các endpoint của Actuator là gì?
 
-Spring Boot Actuator hỗ trợ hai giao thức để truy cập các endpoint:
+Bạn có thể sử dụng hai giao thức chính để truy cập các endpoint của Spring Boot Actuator:
 
-1.  **HTTP**: Đây là giao thức phổ biến nhất. Các endpoint được truy cập thông qua các URL. Theo mặc định, chỉ có `/actuator/health` và `/actuator/info` được hiển thị qua web. Bạn có thể sử dụng bất kỳ HTTP client nào như trình duyệt hoặc `curl` để truy cập.
-2.  **JMX (Java Management Extensions)**: Giao thức này cho phép bạn truy cập các MBean (Managed Beans) của Actuator thông qua các công cụ hỗ trợ JMX như `JConsole` hoặc `VisualVM` (cả hai đều đi kèm với JDK). Tất cả các endpoint thường được bật qua JMX theo mặc định.
+1.  **HTTP**: Đây là giao thức phổ biến nhất. Các endpoint được hiển thị dưới dạng các API REST, có thể truy cập qua trình duyệt hoặc bất kỳ công cụ HTTP client nào (như `curl`, Postman).
 
-**Ví dụ truy cập qua HTTP:**
+    * **Ưu điểm**: Dễ sử dụng, có thể truy cập từ bất kỳ đâu, tích hợp tốt với các công cụ giám sát web.
+    * **Ví dụ**: `http://localhost:8080/actuator/health`, `http://localhost:8080/actuator/metrics`.
 
-```bash
-# Kiểm tra sức khỏe ứng dụng
-curl http://localhost:8080/actuator/health
+2.  **JMX (Java Management Extensions)**: Là một công nghệ tiêu chuẩn của Java để giám sát và quản lý các ứng dụng. Các endpoint của Actuator cũng có thể được hiển thị qua JMX.
 
-# Xem thông tin ứng dụng
-curl http://localhost:8080/actuator/info
+    * **Ưu điểm**: Cung cấp quyền truy cập phong phú hơn vào các hoạt động bên trong của ứng dụng, thường được sử dụng trong các môi trường doanh nghiệp có hệ thống giám sát dựa trên JMX.
+    * **Cách truy cập**: Sử dụng các công cụ như JConsole hoặc VisualVM để kết nối đến ứng dụng Spring Boot đang chạy và xem các MBeans (Managed Beans) do Actuator cung cấp.
+
+Bạn có thể cấu hình để bật/tắt các giao thức này và hiển thị/ẩn các endpoint thông qua các thuộc tính trong `application.properties` hoặc `application.yml`, ví dụ:
+
+```properties
+management.endpoints.web.exposure.include=* # Hiển thị tất cả các endpoint qua HTTP
+management.endpoints.jmx.exposure.include=health,info # Chỉ hiển thị health và info qua JMX
 ```
+
+Dưới đây là phần tiếp theo của tài liệu hướng dẫn về Spring Boot, với việc loại bỏ các ký tự không cần thiết và tập trung vào nội dung chính:
 
 -----
 
@@ -808,17 +820,17 @@ curl http://localhost:8080/actuator/info
 
 Spring Boot Actuator cung cấp một loạt các endpoint tích hợp sẵn để giám sát và tương tác với ứng dụng. Dưới đây là một số endpoint quan trọng:
 
-| Endpoint | Mô tả | Mặc định hiển thị qua Web |
-| :--- | :--- | :--- |
-| `health` | Hiển thị thông tin sức khỏe của ứng dụng. | Có |
-| `info` | Hiển thị thông tin tùy chỉnh về ứng dụng. | Có |
-| `beans` | Hiển thị danh sách đầy đủ tất cả các Spring bean trong ứng dụng. | Không |
-| `metrics` | Hiển thị các thông tin số liệu (metrics) của ứng dụng. | Không |
-| `loggers` | Hiển thị và cho phép thay đổi cấp độ ghi log của ứng dụng. | Không |
-| `env` | Hiển thị các thuộc tính từ môi trường của Spring. | Không |
-| `mappings` | Hiển thị danh sách tất cả các đường dẫn `@RequestMapping`. | Không |
-| `threaddump` | Thực hiện một thread dump của JVM. | Không |
-| `shutdown` | Cho phép tắt ứng dụng một cách an toàn (mặc định bị vô hiệu hóa). | Không |
+| Endpoint      | Mô tả                                          | Mặc định hiển thị qua Web |
+| :------------ | :--------------------------------------------- | :----------------------- |
+| `health`      | Hiển thị thông tin sức khỏe của ứng dụng.      | Có                       |
+| `info`        | Hiển thị thông tin tùy chỉnh về ứng dụng.      | Có                       |
+| `beans`       | Hiển thị danh sách đầy đủ tất cả các Spring bean trong ứng dụng. | Không                    |
+| `metrics`     | Hiển thị các thông tin số liệu (metrics) của ứng dụng. | Không                    |
+| `loggers`     | Hiển thị và cho phép thay đổi cấp độ ghi log của ứng dụng. | Không                    |
+| `env`         | Hiển thị các thuộc tính từ môi trường của Spring. | Không                    |
+| `mappings`    | Hiển thị danh sách tất cả các đường dẫn `@RequestMapping`. | Không                    |
+| `threaddump`  | Thực hiện một thread dump của JVM.              | Không                    |
+| `shutdown`    | Cho phép tắt ứng dụng một cách an toàn (mặc định bị vô hiệu hóa). | Không                    |
 
 Để hiển thị các endpoint khác ngoài `health` và `info` qua web, bạn cần cấu hình trong `application.properties`.
 
@@ -989,9 +1001,11 @@ management.endpoints.web.exposure.include=metrics
 
 Sau khi kích hoạt, bạn có thể truy cập `/actuator/metrics` để xem danh sách các metrics có sẵn và đi sâu vào từng metric để phân tích.
 
+-----
+
 ## Câu hỏi 31: Làm thế nào để tạo một metric tùy chỉnh (custom metric) có hoặc không có tag?
 
-Bạn có thể tạo các metric tùy chỉnh trong Spring Boot Actuator bằng cách sử dụng `MeterRegistry` từ Micrometer, một facade (lớp vỏ) cho các số liệu ứng dụng. Micrometer cho phép bạn đăng ký nhiều loại "meter" khác nhau sẽ được hiển thị qua endpoint `/actuator/metrics`.
+Bạn có thể tạo các metric tùy chỉnh trong Spring Boot Actuator bằng cách sử dụng **`MeterRegistry`** từ Micrometer, một facade (lớp vỏ) cho các số liệu ứng dụng. Micrometer cho phép bạn đăng ký nhiều loại "meter" khác nhau sẽ được hiển thị qua endpoint `/actuator/metrics`.
 
 Các loại meter cơ bản bao gồm:
 
@@ -1000,7 +1014,7 @@ Các loại meter cơ bản bao gồm:
 * Timer
 * Distribution Summary
 
-Để tạo một metric, bạn có thể đăng ký nó trực tiếp với `MeterRegistry`. Bạn có thể thêm các "tag" (thẻ) để tạo ra các chiều (dimensions) cho metric của mình, giúp cho việc lọc và phân tích dữ liệu trở nên linh hoạt hơn.
+Để tạo một metric, bạn có thể đăng ký nó trực tiếp với `MeterRegistry`. Bạn có thể thêm các **"tag"** (thẻ) để tạo ra các chiều (dimensions) cho metric của mình, giúp cho việc lọc và phân tích dữ liệu trở nên linh hoạt hơn.
 
 **Ví dụ tạo metric với `MeterRegistry`:**
 Giả sử bạn có một service và muốn đếm số lần một đối tượng được lưu trữ.
@@ -1102,10 +1116,10 @@ Trạng thái của `Health Indicator` được dùng để thông báo cho Spri
 
 Mỗi `HealthIndicator` phải trả về một trong các trạng thái sau:
 
-* `UP`: Thành phần đang hoạt động như mong đợi.
-* `DOWN`: Thành phần đã gặp một lỗi không mong muốn.
-* `OUT_OF_SERVICE`: Thành phần đã được đưa ra khỏi dịch vụ và không nên được sử dụng.
-* `UNKNOWN`: Trạng thái của thành phần không xác định.
+* **`UP`**: Thành phần đang hoạt động như mong đợi.
+* **`DOWN`**: Thành phần đã gặp một lỗi không mong muốn.
+* **`OUT_OF_SERVICE`**: Thành phần đã được đưa ra khỏi dịch vụ và không nên được sử dụng.
+* **`UNKNOWN`**: Trạng thái của thành phần không xác định.
 * Trạng thái tùy chỉnh do người dùng định nghĩa.
 
 Spring Actuator sử dụng một `HealthAggregator` để tổng hợp các trạng thái từ tất cả các `HealthIndicator` và quyết định trạng thái cuối cùng cho toàn bộ ứng dụng. Theo mặc định, `OrderedHealthAggregator` sẽ sắp xếp các trạng thái theo thứ tự ưu tiên (`DOWN`, `OUT_OF_SERVICE`, `UP`, `UNKNOWN`) và lấy trạng thái có độ ưu tiên cao nhất làm trạng thái cuối cùng.
@@ -1283,11 +1297,13 @@ Các dependency chính bao gồm:
 
 Việc có sẵn các thư viện này giúp bạn có thể bắt đầu viết các bài kiểm thử đa dạng (unit, integration, mock) một cách nhanh chóng mà không cần phải quản lý nhiều dependency riêng lẻ.
 
+-----
+
 ## Câu hỏi 41: Làm thế nào để thực hiện kiểm thử tích hợp (integration testing) với `@SpringBootTest` cho một ứng dụng web?
 
-[cite\_start]Kiểm thử tích hợp (integration test) là kiểm tra sự tương tác giữa nhiều thành phần của hệ thống để đảm bảo chúng hoạt động cùng nhau như mong đợi[cite: 537]. [cite\_start]Khi kiểm thử các thành phần web (như Controller), bài kiểm thử nên thực hiện một yêu cầu HTTP thực sự và kiểm tra phản hồi HTTP nhận được[cite: 541].
+Kiểm thử tích hợp (integration test) là kiểm tra sự tương tác giữa nhiều thành phần của hệ thống để đảm bảo chúng hoạt động cùng nhau như mong đợi. Khi kiểm thử các thành phần web (như Controller), bài kiểm thử nên thực hiện một yêu cầu HTTP thực sự và kiểm tra phản hồi HTTP nhận được.
 
-[cite\_start]Spring Boot cung cấp hai cách chính để thực hiện kiểm thử tích hợp cho các thành phần web[cite: 547]:
+Spring Boot cung cấp hai cách chính để thực hiện kiểm thử tích hợp cho các thành phần web:
 
 ### 1\. Sử dụng `MockMvc`
 
@@ -1326,7 +1342,7 @@ public class CityControllerWebMockMvcTest {
 
 ### 2\. Sử dụng Container nhúng (Embedded Container)
 
-Cách tiếp cận này khởi động một máy chủ web thực sự trên một cổng ngẫu nhiên. Nó cho phép bạn thực hiện các yêu cầu HTTP đến ứng dụng của mình bằng một HTTP client như `TestRestTemplate`. [cite\_start]Đây là một bài kiểm thử tích hợp toàn diện hơn. [cite: 556]
+Cách tiếp cận này khởi động một máy chủ web thực sự trên một cổng ngẫu nhiên. Nó cho phép bạn thực hiện các yêu cầu HTTP đến ứng dụng của mình bằng một HTTP client như `TestRestTemplate`. Đây là một bài kiểm thử tích hợp toàn diện hơn.
 
 **Ví dụ:**
 
@@ -1363,15 +1379,15 @@ public class CityControllerWebIntegrationTest {
 
 ## Câu hỏi 42: Khi nào bạn muốn sử dụng `@WebMvcTest`? Nó tự động cấu hình những gì?
 
-[cite\_start]Bạn nên sử dụng `@WebMvcTest` khi muốn viết các bài kiểm thử chỉ tập trung vào tầng web (web layer) của ứng dụng, chẳng hạn như các `Controller`[cite: 332].
+Bạn nên sử dụng **`@WebMvcTest`** khi muốn viết các bài kiểm thử chỉ tập trung vào **tầng web (web layer)** của ứng dụng, chẳng hạn như các `Controller`.
 
-[cite\_start]`@WebMvcTest` sẽ chỉ tạo một `ApplicationContext` chứa các thành phần liên quan đến web, bỏ qua các thành phần khác như `@Service` hay `@Repository`[cite: 333]. Điều này giúp bài kiểm thử nhẹ hơn và nhanh hơn so với việc tải toàn bộ ứng dụng. [cite\_start]Nếu controller của bạn phụ thuộc vào các service khác, bạn cần phải giả lập (mock) chúng bằng `@MockBean`[cite: 334].
+`@WebMvcTest` sẽ chỉ tạo một `ApplicationContext` chứa các thành phần liên quan đến web, bỏ qua các thành phần khác như `@Service` hay `@Repository`. Điều này giúp bài kiểm thử nhẹ hơn và nhanh hơn so với việc tải toàn bộ ứng dụng. Nếu controller của bạn phụ thuộc vào các service khác, bạn cần phải **giả lập (mock)** chúng bằng `@MockBean`.
 
-[cite\_start]Nó tự động cấu hình các thành phần sau[cite: 341]:
+Nó tự động cấu hình các thành phần sau:
 
-* [cite\_start]`MockMvc` [cite: 341]
-* [cite\_start]Các lớp `@Controller`, `@ControllerAdvice`, `@JsonComponent` [cite: 342, 343, 344]
-* [cite\_start]Các lớp `@Converter`, `@Filter`, `@WebMvcConfigurer` [cite: 345, 347, 348]
+* **`MockMvc`**
+* Các lớp **`@Controller`**, **`@ControllerAdvice`**, **`@JsonComponent`**
+* Các lớp **`@Converter`**, **`@Filter`**, **`@WebMvcConfigurer`**
 
 **Ví dụ:**
 
@@ -1416,9 +1432,9 @@ Sự khác biệt chính nằm ở nguồn gốc và cách chúng tích hợp v�
 
 ### `@Mock`
 
-* [cite\_start]**Nguồn gốc**: Đến từ framework **Mockito**[cite: 670].
-* [cite\_start]**Chức năng**: Tạo một đối tượng giả (mock object)[cite: 670].
-* [cite\_start]**Tích hợp**: Nó **không** tự động tích hợp với `ApplicationContext` của Spring[cite: 672]. [cite\_start]Bạn phải tự tiêm (inject) mock này vào lớp đang được kiểm thử, thường là bằng cách sử dụng `@InjectMocks` của Mockito[cite: 672]. [cite\_start]Nó chỉ hoạt động trong phạm vi của lớp kiểm thử đó[cite: 675].
+* **Nguồn gốc**: Đến từ framework **Mockito**.
+* **Chức năng**: Tạo một đối tượng giả (mock object).
+* **Tích hợp**: Nó **không** tự động tích hợp với `ApplicationContext` của Spring. Bạn phải tự tiêm (inject) mock này vào lớp đang được kiểm thử, thường là bằng cách sử dụng `@InjectMocks` của Mockito. Nó chỉ hoạt động trong phạm vi của lớp kiểm thử đó.
 
 **Ví dụ với `@Mock`:**
 
@@ -1446,9 +1462,9 @@ class MyServiceUnitTest {
 
 ### `@MockBean`
 
-* [cite\_start]**Nguồn gốc**: Đến từ **Spring Boot Test** (`spring-boot-test`)[cite: 673].
-* [cite\_start]**Chức năng**: Tạo một mock object của Mockito và **thay thế bean thật** có cùng kiểu trong `ApplicationContext` của Spring bằng mock đó[cite: 673, 674].
-* [cite\_start]**Tích hợp**: Bất kỳ bean nào khác trong context mà phụ thuộc (`@Autowired`) vào bean bị mock sẽ nhận được đối tượng mock này thay vì bean thật[cite: 674]. Nó hữu ích trong các bài kiểm thử tích hợp (`@SpringBootTest`, `@WebMvcTest`).
+* **Nguồn gốc**: Đến từ **Spring Boot Test** (`spring-boot-test`).
+* **Chức năng**: Tạo một mock object của Mockito và **thay thế bean thật** có cùng kiểu trong `ApplicationContext` của Spring bằng mock đó.
+* **Tích hợp**: Bất kỳ bean nào khác trong context mà phụ thuộc (`@Autowired`) vào bean bị mock sẽ nhận được đối tượng mock này thay vì bean thật. Nó hữu ích trong các bài kiểm thử tích hợp (`@SpringBootTest`, `@WebMvcTest`).
 
 **Ví dụ với `@MockBean`:**
 
@@ -1471,24 +1487,24 @@ class MyControllerIntegrationTest {
 }
 ```
 
-[cite\_start]Tóm lại, `@MockBean` là một công cụ mạnh mẽ của Spring Boot để thay thế bean trong toàn bộ context cho mục đích kiểm thử tích hợp, trong khi `@Mock` là một công cụ cơ bản của Mockito để tạo mock cho các bài kiểm thử đơn vị (unit test)[cite: 675].
+Tóm lại, **`@MockBean`** là một công cụ mạnh mẽ của Spring Boot để thay thế bean trong toàn bộ context cho mục đích kiểm thử tích hợp, trong khi **`@Mock`** là một công cụ cơ bản của Mockito để tạo mock cho các bài kiểm thử đơn vị (unit test).
 
 -----
 
 ## Câu hỏi 44: Khi nào bạn muốn sử dụng `@DataJpaTest`? Nó tự động cấu hình những gì?
 
-[cite\_start]Bạn nên sử dụng `@DataJpaTest` khi muốn viết các bài kiểm thử tích hợp chỉ tập trung vào các thành phần liên quan đến **JPA**, chẳng hạn như các `Entity` và `Repository`[cite: 139].
+Bạn nên sử dụng **`@DataJpaTest`** khi muốn viết các bài kiểm thử tích hợp chỉ tập trung vào các thành phần liên quan đến **JPA**, chẳng hạn như các `Entity` và `Repository`.
 
-[cite\_start]`@DataJpaTest` sẽ không tải toàn bộ ứng dụng mà chỉ tải các thành phần cần thiết cho tầng dữ liệu, giúp bài kiểm thử nhanh và gọn gàng hơn[cite: 147].
+`@DataJpaTest` sẽ không tải toàn bộ ứng dụng mà chỉ tải các thành phần cần thiết cho tầng dữ liệu, giúp bài kiểm thử nhanh và gọn gàng hơn.
 
 Nó tự động cấu hình các thành phần sau:
 
-* [cite\_start]Một **cơ sở dữ liệu nhúng trong bộ nhớ** (in-memory embedded database)[cite: 141].
-* [cite\_start]Quét và cấu hình các bean `@Entity`[cite: 143].
-* [cite\_start]Quét và cấu hình các **Spring Data Repository**[cite: 144].
-* [cite\_start]Cấu hình một `TestEntityManager`, một tiện ích để thao tác với các entity trong các bài kiểm thử[cite: 145].
+* Một **cơ sở dữ liệu nhúng trong bộ nhớ** (in-memory embedded database).
+* Quét và cấu hình các bean `@Entity`.
+* Quét và cấu hình các **Spring Data Repository**.
+* Cấu hình một **`TestEntityManager`**, một tiện ích để thao tác với các entity trong các bài kiểm thử.
 
-[cite\_start]Quan trọng là, mỗi bài kiểm thử `@DataJpaTest` đều được thực hiện trong một **giao dịch (transaction)** và sẽ được **rollback** sau khi kết thúc, đảm bảo các bài kiểm thử độc lập với nhau[cite: 148].
+Quan trọng là, mỗi bài kiểm thử `@DataJpaTest` đều được thực hiện trong một **giao dịch (transaction)** và sẽ được **rollback** sau khi kết thúc, đảm bảo các bài kiểm thử độc lập với nhau.
 
 **Ví dụ:**
 

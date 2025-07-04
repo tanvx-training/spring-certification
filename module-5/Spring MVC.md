@@ -1,6 +1,6 @@
-## **Câu 1: MVC là viết tắt của một mẫu thiết kế. Nó là gì và ý tưởng đằng sau nó là gì?**
+## 1\. MVC là viết tắt của một mẫu thiết kế. Nó là gì và ý tưởng đằng sau nó là gì?
 
-MVC là viết tắt của **Model-View-Controller**. Đây là một mẫu kiến trúc phần mềm giúp tách biệt ứng dụng thành ba thành phần chính có liên kết với nhau, giúp cho việc phát triển và bảo trì dễ dàng hơn.
+**MVC** là viết tắt của **Model-View-Controller**. Đây là một mẫu kiến trúc phần mềm giúp tách biệt ứng dụng thành ba thành phần chính có liên kết với nhau, giúp cho việc phát triển và bảo trì dễ dàng hơn.
 
 * **Model**: Là trái tim của ứng dụng, chịu trách nhiệm quản lý dữ liệu và logic nghiệp vụ. Nó không biết gì về cách dữ liệu sẽ được hiển thị. Các công việc chính của Model bao gồm:
 
@@ -15,7 +15,7 @@ MVC là viết tắt của **Model-View-Controller**. Đây là một mẫu ki�
 
 **Ý tưởng chính** của MVC là **phân tách các mối quan tâm (Separation of Concerns)**. Điều này giúp giảm sự phụ thuộc lẫn nhau giữa các thành phần, tăng khả năng tái sử dụng code, dễ bảo trì và mở rộng.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 Đây là một ví dụ đơn giản về một `UserController` trong Spring MVC.
 
@@ -69,7 +69,7 @@ Trong ví dụ trên:
 
 -----
 
-## **Câu 2: DispatcherServlet là gì và nó được dùng để làm gì?**
+## 2\. DispatcherServlet là gì và nó được dùng để làm gì?
 
 **DispatcherServlet** là thành phần cốt lõi của Spring MVC. Nó hoạt động như một **Front Controller**, nghĩa là nó là servlet duy nhất xử lý tất cả các yêu cầu HTTP đến ứng dụng của bạn.
 
@@ -83,7 +83,7 @@ Trong ví dụ trên:
 
 Về cơ bản, `DispatcherServlet` điều phối toàn bộ luồng xử lý một yêu cầu trong Spring MVC.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 Để `DispatcherServlet` hoạt động, nó cần được đăng ký và cấu hình. Trong một ứng dụng Spring Boot hiện đại, việc này được tự động hóa. Tuy nhiên, nếu cấu hình thủ công (ví dụ trong file `web.xml`), nó sẽ trông như sau:
 
@@ -134,7 +134,7 @@ public class MyWebAppInitializer extends AbstractAnnotationConfigDispatcherServl
 
 -----
 
-## **Câu 3: Web application context là gì? Nó cung cấp những scope (phạm vi) bổ sung nào?**
+## 3\. Web application context là gì? Nó cung cấp những scope (phạm vi) bổ sung nào?
 
 **Web Application Context** là một `ApplicationContext` (bộ chứa IoC của Spring) được mở rộng dành riêng cho các ứng dụng web. Nó kế thừa tất cả các tính năng của một `ApplicationContext` thông thường và thêm vào các tính năng liên quan đến web, đặc biệt là quyền truy cập vào `ServletContext`.
 
@@ -145,7 +145,7 @@ Ngoài các scope bean tiêu chuẩn (singleton, prototype), Web Application Con
 3.  **Application Scope (`@ApplicationScope`)**: Chỉ có một instance bean duy nhất được tạo ra cho toàn bộ vòng đời của `ServletContext` (tức là toàn bộ ứng dụng web). Nó tương tự singleton nhưng ở cấp độ `ServletContext`.
 4.  **WebSocket Scope**: Bean được tạo ra cho vòng đời của một phiên WebSocket.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 Ví dụ về một bean có phạm vi `request`:
 
@@ -202,7 +202,7 @@ public class ShoppingCart {
 
 -----
 
-## **Câu 4: Annotation @Controller được dùng để làm gì?**
+## 4\. Annotation @Controller được dùng để làm gì?
 
 Annotation **`@Controller`** được dùng để đánh dấu một lớp Java là một **Controller** trong kiến trúc MVC của Spring.
 
@@ -212,7 +212,7 @@ Khi Spring quét các lớp trong ứng dụng (classpath scanning), nó sẽ ph
 
 Thông thường, các phương thức bên trong một lớp `@Controller` sẽ được chú thích thêm bằng các annotation ánh xạ yêu cầu như `@RequestMapping`, `@GetMapping`, `@PostMapping`, v.v., để chỉ định yêu cầu nào chúng sẽ xử lý.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 ```java
 import org.springframework.stereotype.Controller;
@@ -234,7 +234,7 @@ public class HomeController {
 
 -----
 
-## **Câu 5: Một yêu cầu đến được ánh xạ tới một controller và một phương thức như thế nào?**
+## 5\. Một yêu cầu đến được ánh xạ tới một controller và một phương thức như thế nào?
 
 Quá trình ánh xạ một yêu cầu đến một phương thức controller cụ thể được điều phối bởi **`DispatcherServlet`** và thực hiện chủ yếu bởi **`HandlerMapping`**.
 
@@ -253,7 +253,7 @@ Các bước diễn ra như sau:
 
 Khi một phương thức controller khớp với tất cả các tiêu chí của yêu cầu, `HandlerMapping` sẽ trả về phương thức đó cho `DispatcherServlet`, và sau đó `DispatcherServlet` sẽ thực thi nó.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 ```java
 import org.springframework.stereotype.Controller;
@@ -290,7 +290,7 @@ public class OrderController {
 
 -----
 
-## **Câu 6: Sự khác biệt giữa @RequestMapping và @GetMapping là gì?**
+## 6\. Sự khác biệt giữa @RequestMapping và @GetMapping là gì?
 
 Sự khác biệt chính là về tính chuyên dụng và sự rõ ràng:
 
@@ -310,7 +310,7 @@ Tương tự, Spring cung cấp các annotation chuyên dụng khác cho các ph
 * `@DeleteMapping` (cho DELETE)
 * `@PatchMapping` (cho PATCH)
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 Hai định nghĩa phương thức sau đây là **tương đương**:
 
@@ -349,7 +349,7 @@ public class ProductController {
 
 -----
 
-## **Câu 7: @RequestParam được dùng để làm gì?**
+## 7\. @RequestParam được dùng để làm gì?
 
 Annotation **`@RequestParam`** được sử dụng để trích xuất và ràng buộc các **tham số của một yêu cầu web (request parameters)** vào các tham số của phương thức trong controller.
 
@@ -364,7 +364,7 @@ Các tham số yêu cầu này có thể đến từ:
 * `required`: Xác định xem tham số có bắt buộc hay không (mặc định là `true`). Nếu `required=true` và tham số bị thiếu, Spring sẽ ném ra một exception. Nếu `required=false`, tham số của phương thức sẽ nhận giá trị `null` nếu nó không có mặt.
 * `defaultValue`: Cung cấp một giá trị mặc định cho tham số nếu nó không được tìm thấy trong yêu cầu. Sử dụng `defaultValue` ngầm định rằng `required=false`.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 ```java
 import org.springframework.stereotype.Controller;
@@ -399,7 +399,7 @@ public class SearchController {
 
 -----
 
-## **Câu 8: Sự khác biệt giữa @RequestParam và @PathVariable là gì?**
+## 8\. Sự khác biệt giữa @RequestParam và @PathVariable là gì?
 
 Cả hai annotation này đều dùng để trích xuất dữ liệu từ URL, nhưng chúng lấy dữ liệu từ những phần khác nhau của URL.
 
@@ -407,14 +407,14 @@ Cả hai annotation này đều dùng để trích xuất dữ liệu từ URL, 
 
 * **`@RequestParam`**: Dùng để trích xuất giá trị từ các **tham số trong chuỗi truy vấn (query parameters)**, là các cặp `key=value` xuất hiện sau dấu `?` trong URL. Nó phù hợp cho việc lọc, sắp xếp hoặc phân trang dữ liệu.
 
-| Tiêu chí | `@PathVariable` | `@RequestParam` |
-| --- | --- | --- |
-| **Nguồn dữ liệu** | Phần đường dẫn của URL | Phần chuỗi truy vấn của URL |
-| **Ví dụ URL** | `/users/`**`123`** | `/users?`**`id=123`** |
-| **Mục đích** | Truy cập một tài nguyên cụ thể | Lọc, sắp xếp, phân trang |
+| Tiêu chí       | `@PathVariable`                | `@RequestParam`                  |
+| :------------- | :----------------------------- | :------------------------------- |
+| **Nguồn dữ liệu** | Phần đường dẫn của URL         | Phần chuỗi truy vấn của URL      |
+| **Ví dụ URL** | `/users/**`**`123`** | `/users?`**`id=123`** |
+| **Mục đích** | Truy cập một tài nguyên cụ thể | Lọc, sắp xếp, phân trang         |
 | **Giá trị mặc định** | Không hỗ trợ thuộc tính `defaultValue` | Hỗ trợ thuộc tính `defaultValue` |
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 Sử dụng **`@PathVariable`** để lấy một người dùng cụ thể bằng ID:
 
@@ -461,7 +461,7 @@ public class UserSearchController {
 
 -----
 
-## **Câu 9: Một số kiểu tham số cho một phương thức controller là gì?**
+## 9\. Một số kiểu tham số cho một phương thức controller là gì?
 
 Các phương thức trong controller của Spring rất linh hoạt và có thể chấp nhận nhiều kiểu tham số khác nhau. Spring sẽ tự động "tiêm" (inject) các đối tượng cần thiết vào làm tham số khi phương thức được gọi. Dưới đây là một số kiểu phổ biến:
 
@@ -484,7 +484,7 @@ Các phương thức trong controller của Spring rất linh hoạt và có th�
     * `java.io.InputStream` / `java.io.Reader`: Để đọc body của yêu cầu dưới dạng luồng dữ liệu thô.
     * `java.io.OutputStream` / `java.io.Writer`: Để ghi body của phản hồi dưới dạng luồng dữ liệu thô.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 Một phương thức controller sử dụng nhiều loại tham số khác nhau:
 
@@ -528,7 +528,7 @@ public class AdvancedController {
 
 -----
 
-## **Câu 10: Những annotation nào khác bạn có thể sử dụng trên một tham số của phương thức controller?**
+## 10\. Những annotation nào khác bạn có thể sử dụng trên một tham số của phương thức controller?
 
 Ngoài `@RequestParam` và `@PathVariable`, có nhiều annotation khác rất hữu ích để sử dụng trên các tham số của phương thức controller, giúp việc trích xuất dữ liệu từ yêu cầu trở nên dễ dàng và rõ ràng hơn.
 
@@ -546,7 +546,7 @@ Ngoài `@RequestParam` và `@PathVariable`, có nhiều annotation khác rất h
 
 * **`@SessionAttribute`**: Ràng buộc một thuộc tính đã tồn tại trong session vào một tham số của phương thức.
 
-### **Ví dụ Code**
+### Ví dụ Code
 
 Một ví dụ về API RESTful sử dụng nhiều annotation khác nhau:
 
@@ -610,18 +610,20 @@ curl -X POST http://localhost:8080/api/products \
 -d '{"name": "Laptop Pro", "price": 1200.50}'
 ```
 
-## **Câu 11: Một số kiểu trả về hợp lệ của một phương thức controller là gì?**
+-----
+
+## 11\. Một số kiểu trả về hợp lệ của một phương thức controller là gì?
 
 Một phương thức controller trong Spring MVC có thể trả về nhiều kiểu dữ liệu khác nhau, tùy thuộc vào mục đích của bạn là trả về một API RESTful, render một trang HTML hay xử lý bất đồng bộ.
 
-### **1. Trả về Dữ liệu (Thường dùng cho REST APIs)**
+### 1\. Trả về Dữ liệu (Thường dùng cho REST APIs)
 
-* [cite\_start]**`@ResponseBody`**: Annotation này có thể được dùng trên một phương thức để chỉ ra rằng giá trị trả về của phương thức đó sẽ được ghi trực tiếp vào body của response HTTP[cite: 183]. [cite\_start]Spring sẽ sử dụng các `HttpMessageConverter` để chuyển đổi đối tượng trả về (ví dụ: một đối tượng Java) thành một định dạng khác (ví dụ: JSON)[cite: 183].
-* [cite\_start]**`ResponseEntity<B>`**: Cho phép kiểm soát toàn bộ response HTTP, bao gồm cả **HTTP status code**, **headers**, và **body**[cite: 184]. Đây là cách làm rất linh hoạt và được ưa chuộng khi xây dựng các API REST.
-* [cite\_start]**`HttpEntity<B>`**: Tương tự như `ResponseEntity` nhưng không cho phép thiết lập status code[cite: 184].
-* [cite\_start]**`HttpHeaders`**: Chỉ trả về các header trong response mà không có body[cite: 184].
+* **`@ResponseBody`**: Annotation này có thể được dùng trên một phương thức để chỉ ra rằng giá trị trả về của phương thức đó sẽ được ghi trực tiếp vào body của response HTTP. Spring sẽ sử dụng các `HttpMessageConverter` để chuyển đổi đối tượng trả về (ví dụ: một đối tượng Java) thành một định dạng khác (ví dụ: JSON).
+* **`ResponseEntity<B>`**: Cho phép kiểm soát toàn bộ response HTTP, bao gồm cả **HTTP status code**, **headers**, và **body**. Đây là cách làm rất linh hoạt và được ưa chuộng khi xây dựng các API REST.
+* **`HttpEntity<B>`**: Tương tự như `ResponseEntity` nhưng không cho phép thiết lập status code.
+* **`HttpHeaders`**: Chỉ trả về các header trong response mà không có body.
 
-#### **Ví dụ Code (REST API)**
+#### Ví dụ Code (REST API)
 
 ```java
 import org.springframework.http.HttpStatus;
@@ -664,14 +666,14 @@ public class UserApiController {
 
 -----
 
-### **2. Trả về View (Thường dùng cho ứng dụng Web truyền thống)**
+### 2\. Trả về View (Thường dùng cho ứng dụng Web truyền thống)
 
-* [cite\_start]**`String`**: Trả về một chuỗi là **tên logic của view**[cite: 185]. [cite\_start]Spring sẽ sử dụng một `ViewResolver` để tìm file view tương ứng (ví dụ: `home.html`) để render[cite: 185]. [cite\_start]Dữ liệu cho view có thể được truyền thông qua tham số `Model` của phương thức[cite: 185].
-* [cite\_start]**`ModelAndView`**: Một đối tượng chứa cả **Model** (dữ liệu) và **View** (tên view hoặc một instance của view)[cite: 191]. Đây là cách làm tường minh để trả về cả hai cùng một lúc.
-* [cite\_start]**`View`**: Trả về một instance của một view cụ thể (ví dụ: `JstlView`, `ThymeleafView`)[cite: 186].
-* [cite\_start]**`Map` / `Model`**: Trả về một đối tượng `Map` hoặc `Model` chứa các thuộc tính sẽ được thêm vào model[cite: 190]. [cite\_start]Tên view sẽ được Spring tự động suy ra dựa trên URL của yêu cầu (thông qua `RequestToViewNameTranslator`)[cite: 190].
+* **`String`**: Trả về một chuỗi là **tên logic của view**. Spring sẽ sử dụng một `ViewResolver` để tìm file view tương ứng (ví dụ: `home.html`) để render. Dữ liệu cho view có thể được truyền thông qua tham số `Model` của phương thức.
+* **`ModelAndView`**: Một đối tượng chứa cả **Model** (dữ liệu) và **View** (tên view hoặc một instance của view). Đây là cách làm tường minh để trả về cả hai cùng một lúc.
+* **`View`**: Trả về một instance của một view cụ thể (ví dụ: `JstlView`, `ThymeleafView`).
+* **`Map` / `Model`**: Trả về một đối tượng `Map` hoặc `Model` chứa các thuộc tính sẽ được thêm vào model. Tên view sẽ được Spring tự động suy ra dựa trên URL của yêu cầu (thông qua `RequestToViewNameTranslator`).
 
-#### **Ví dụ Code (Web Application)**
+#### Ví dụ Code (Web Application)
 
 ```java
 import org.springframework.stereotype.Controller;
@@ -702,18 +704,18 @@ public class HomeController {
 
 -----
 
-### **3. Các kiểu trả về khác**
+### 3\. Các kiểu trả về khác
 
-* [cite\_start]**`void`**: Phương thức không trả về gì[cite: 192]. [cite\_start]Nó có thể tự xử lý response bằng cách ghi trực tiếp vào `HttpServletResponse`, hoặc chỉ định status code bằng `@ResponseStatus`[cite: 192]. Trong REST API, `void` cùng với status 204 No Content thường có nghĩa là "thao tác thành công, không có nội dung gì để trả về".
+* **`void`**: Phương thức không trả về gì. Nó có thể tự xử lý response bằng cách ghi trực tiếp vào `HttpServletResponse`, hoặc chỉ định status code bằng `@ResponseStatus`. Trong REST API, `void` cùng với status 204 No Content thường có nghĩa là "thao tác thành công, không có nội dung gì để trả về".
 * **Kiểu bất đồng bộ**: Spring hỗ trợ xử lý bất đồng bộ để giải phóng luồng của servlet container, cho phép ứng dụng xử lý nhiều yêu cầu hơn.
-    * [cite\_start]**`Callable<V>`**: Cho phép một tác vụ được thực thi trong một luồng do Spring quản lý[cite: 199].
-    * [cite\_start]**`DeferredResult<V>`**: Kết quả sẽ được trả về từ một luồng khác trong tương lai[cite: 194].
-    * [cite\_start]**`CompletableFuture<V>`**: Hỗ trợ các chuỗi xử lý bất đồng bộ phức tạp[cite: 200].
+    * **`Callable<V>`**: Cho phép một tác vụ được thực thi trong một luồng do Spring quản lý.
+    * **`DeferredResult<V>`**: Kết quả sẽ được trả về từ một luồng khác trong tương lai.
+    * **`CompletableFuture<V>`**: Hỗ trợ các chuỗi xử lý bất đồng bộ phức tạp.
 * **Kiểu streaming**: Dùng để gửi dữ liệu theo dòng (stream).
-    * [cite\_start]**`ResponseBodyEmitter` / `SseEmitter`**: Cho phép gửi nhiều đối tượng một cách bất đồng bộ về phía client[cite: 201]. [cite\_start]`SseEmitter` chuyên dùng cho Server-Sent Events[cite: 201].
-    * [cite\_start]**`StreamingResponseBody`**: Cho phép ghi dữ liệu bất đồng bộ vào `OutputStream` của response[cite: 201].
+    * **`ResponseBodyEmitter` / `SseEmitter`**: Cho phép gửi nhiều đối tượng một cách bất đồng bộ về phía client. `SseEmitter` chuyên dùng cho Server-Sent Events.
+    * **`StreamingResponseBody`**: Cho phép ghi dữ liệu bất đồng bộ vào `OutputStream` của response.
 
-#### **Ví dụ Code (void và bất đồng bộ)**
+#### Ví dụ Code (void và bất đồng bộ)
 
 ```java
 import org.springframework.http.HttpStatus;
@@ -727,20 +729,18 @@ public class OtherReturnTypesController {
     @DeleteMapping("/items/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT) // Trả về status 204 No Content
     public void deleteItem(@PathVariable Long id) {
-        // Logic xóa item ở đây
-        System.out.println("Item " + id + " deleted.");
+        System.out.println("Deleting item with ID: " + id);
+        // ... logic xóa item
     }
 
-    // Sử dụng Callable để xử lý bất đồng bộ
-    @GetMapping("/long-process")
-    public Callable<String> longRunningProcess() {
-        System.out.println("Request received, but processing will be done in another thread.");
-        
+    // Xử lý bất đồng bộ với Callable
+    @GetMapping("/async-task")
+    public Callable<String> performAsyncTask() {
+        System.out.println("Main thread received request. Handing over to Callable.");
         return () -> {
-            // Giả lập một tác vụ tốn thời gian
-            Thread.sleep(3000);
-            System.out.println("Processing complete.");
-            return "Task finished after 3 seconds!";
+            Thread.sleep(2000); // Giả lập công việc tốn thời gian
+            System.out.println("Callable task completed.");
+            return "Async task completed successfully!";
         };
     }
 }
