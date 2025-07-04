@@ -34,14 +34,14 @@
 
 Hầu hết các cuộc tấn công đã được biết đến và được bảo vệ mặc định nếu sử dụng Spring Security.
 
-![alt text](images/Screenshot_5.png)
+![alt text](../images/Screenshot_5.png)
 
 ### Các vai trò người dùng phổ biến
 - **`ADMIN`** là vai trò có quyền hạn đầy đủ.
 - **`MEMBER`** là vai trò với quyền hạn hạn chế.
 - **`GUEST`** là vai trò với quyền sử dụng ứng dụng hạn chế.
 
-![alt text](images/handout/Screenshot_77.png)
+![alt text](../images/handout/Screenshot_77.png)
 
 ### Quy trình xác thực và phân quyền
 
@@ -106,10 +106,10 @@ Hầu hết các cuộc tấn công đã được biết đến và được b�
 </beans:beans> 
 ```
 
-![alt text](images/handout/Screenshot_95.png)
+![alt text](../images/handout/Screenshot_95.png)
 
-![alt text](images/handout/Screenshot_96.png)
+![alt text](../images/handout/Screenshot_96.png)
 
-![alt text](images/handout/Screenshot_97.png)
+![alt text](../images/handout/Screenshot_97.png)
 
-![alt text](images/handout/Screenshot_98.png)
+![alt text](../images/handout/Screenshot_98.png)
