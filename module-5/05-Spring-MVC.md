@@ -2,11 +2,11 @@
 
 - A typical Java Web application architecture
 
-![alt text](images/pet-sitter/Screenshot_14.png "Screenshot_14")
+![alt text](../images/pet-sitter/Screenshot_14.png "Screenshot_14")
 
 - Request life cycle
 
-![alt text](images/Screenshot_1.png "Screenshot_1")
+![alt text](../images/Screenshot_1.png "Screenshot_1")
 
 ### DispatcherServlet
 
@@ -28,7 +28,7 @@
 - Spring MVC có một thư viện thẻ JSP cho phép liên kết dữ liệu và chủ đề.
 - `DispatcherServlet` không được khởi tạo qua một ứng dụng context. Nó được khởi tạo trước khi bất kỳ context ứng dụng nào được tạo ra.
 
-![alt text](images/handout/Screenshot_56.png "Screenshot_56")
+![alt text](../images/handout/Screenshot_56.png "Screenshot_56")
 
 - **Model** - Mô hình giữ dữ liệu hiện tại và logic kinh doanh của ứng dụng.
 - **View** - View chịu trách nhiệm hiển thị dữ liệu của ứng dụng cho người dùng. Người dùng tương tác với view.
@@ -42,7 +42,7 @@ Mối quan hệ giữa hai context này là quan hệ cha-con, trong đó contex
 
 **Vì vậy, các bean trong web context có thể truy cập các bean trong context cha, nhưng ngược lại thì không.**
 
-![alt text](images/handout/Screenshot_58.png "Screenshot_58.png")
+![alt text](../images/handout/Screenshot_58.png "Screenshot_58.png")
 
 - Khi một yêu cầu được phát ra tới ứng dụng:
     - `DispatcherServlet` của ứng dụng nhận yêu cầu.
@@ -379,16 +379,16 @@ public class TodoListServiceImpl implements TodoListService {
 
 ### Các kiểu tham số cho phương thức @Controller
 
-![alt text](images/web/mvc/Screenshot.png "Screenshot.png")
+![alt text](../images/web/mvc/Screenshot.png "Screenshot.png")
 
 ### Các Annotation có thể sử dụng trên tham số phương thức @Controller
 
-![alt text](images/web/mvc/Screenshot_1.png "Screenshot_1.png")
-![alt text](images/web/mvc/Screenshot_2.png "Screenshot_2.png")
+![alt text](../images/web/mvc/Screenshot_1.png "Screenshot_1.png")
+![alt text](../images/web/mvc/Screenshot_2.png "Screenshot_2.png")
 
 ### Các kiểu trả về hợp lệ của một phương thức @Controller
 
-![alt text](images/web/mvc/Screenshot_3.png "Screenshot_3.png")
+![alt text](../images/web/mvc/Screenshot_3.png "Screenshot_3.png")
 
 ### Cấu hình Spring MVC XML
 
@@ -533,4 +533,4 @@ public class WebAppConfigInitializer extends AbstractAnnotationConfigDispatcherS
 - **`@RequestHeader`** có thể tiêm giá trị từ header yêu cầu HTTP vào tham số phương thức.
 - **`@ExceptionHandler({MyException.class})`** - Các phương thức controller được chú thích với nó sẽ được gọi khi ngoại lệ được khai báo bị ném ra.
 
-![alt text](images/web/mvc/web_services.png)
+![alt text](../images/web/mvc/web_services.png)
